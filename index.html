@@ -3,141 +3,355 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aboulaye | Cloud & DevOps Engineer</title>
+
+<title>Aboulaye Sylla | Cloud & DevOps Engineer</title>
+
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:'Segoe UI',sans-serif;
 }
+
+html{
+    scroll-behavior:smooth;
+}
+
 body{
-    background:#f4f6f9;
+    background:#f5f7fa;
     color:#333;
+    line-height:1.6;
 }
-header{
+
+/* Navigation */
+
+nav{
     background:#0f172a;
+    padding:15px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 15px;
+    font-weight:600;
+}
+
+nav a:hover{
+    color:#60a5fa;
+}
+
+/* Hero */
+
+header{
+    background:linear-gradient(135deg,#0f172a,#1e3a8a);
     color:white;
     text-align:center;
-    padding:80px 20px;
+    padding:100px 20px;
 }
+
 header h1{
     font-size:3rem;
+    margin-bottom:10px;
 }
+
+header h2{
+    color:#93c5fd;
+    margin-bottom:15px;
+}
+
 header p{
-    margin-top:10px;
-    font-size:1.2rem;
+    max-width:700px;
+    margin:auto;
+    margin-bottom:30px;
 }
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 24px;
+    border-radius:8px;
+    text-decoration:none;
+    color:white;
+    background:#2563eb;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+.btn-secondary{
+    background:#475569;
+}
+
+/* Sections */
+
 section{
     max-width:1100px;
     margin:auto;
     padding:60px 20px;
 }
+
 h2{
     color:#0f172a;
-    margin-bottom:20px;
+    margin-bottom:25px;
+    text-align:center;
 }
+
+/* Cards */
+
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     gap:20px;
 }
+
 .card{
     background:white;
-    padding:20px;
+    padding:25px;
     border-radius:12px;
     box-shadow:0 2px 10px rgba(0,0,0,0.08);
 }
+
+.card h3{
+    margin-bottom:10px;
+    color:#1e3a8a;
+}
+
+/* Skills */
+
+.skills{
+    text-align:center;
+}
+
 .skills span{
     display:inline-block;
+    margin:6px;
+    padding:10px 15px;
     background:#2563eb;
     color:white;
-    padding:8px 12px;
-    margin:5px;
     border-radius:20px;
 }
+
+/* Contact */
+
+.contact-card{
+    background:white;
+    border-radius:12px;
+    padding:30px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.contact-card p{
+    margin:12px 0;
+}
+
+.contact-card a{
+    color:#2563eb;
+    text-decoration:none;
+}
+
+.contact-card a:hover{
+    text-decoration:underline;
+}
+
+ul{
+    padding-left:20px;
+}
+
+/* Footer */
+
 footer{
     background:#0f172a;
     color:white;
     text-align:center;
     padding:20px;
+    margin-top:40px;
 }
-.btn{
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 20px;
-    background:#2563eb;
-    color:white;
-    text-decoration:none;
-    border-radius:8px;
-}
+
 </style>
 </head>
+
 <body>
 
+<nav>
+    #aboutÀ propos</a>
+    #skillsCompétences</a>
+    #experienceExpérience</a>
+    #projectsProjets</a>
+    #certificationsCertifications</a>
+    #contactContact</a>
+</nav>
+
 <header>
-    <h1>Aboulaye</h1>
-    <p>Cloud Engineer | DevOps Engineer | SRE</p>
-    #contactMe contacter</a>
-</header>
 
-<section>
-    <h2>À propos</h2>
+    <h1>Aboulaye Sylla</h1>
+
+    <h2>Senior NOC Engineer | Cloud & DevOps Engineer</h2>
+
     <p>
-        Ingénieur spécialisé en Cloud, DevOps et SRE avec une expertise
-        en AWS, Docker, Kubernetes, Terraform et CI/CD.
-        Expérience dans l'administration système, le monitoring
-        et l'automatisation des infrastructures.
+        Plus de 8 ans d'expérience dans la supervision d'infrastructures
+        critiques, l'automatisation, le Cloud AWS et les pratiques DevOps.
     </p>
+
+    <div class="hero-buttons">
+        #contactMe contacter</a>
+        <a class="btn btn-secondary"
+           href="CV_Aboulaye_Sylla.pdf"
+           target="_blankon id="about">
+
+    <h2>À propos</h2>
+
+    <p>
+        Ingénieur NOC Senior à la Banque Africaine de Développement,
+        spécialisé dans la supervision d'infrastructures critiques,
+        l'observabilité, l'automatisation et les technologies Cloud.
+        Passionné par Kubernetes, Terraform et les pratiques DevOps,
+        j'accompagne les organisations vers des infrastructures fiables,
+        évolutives et automatisées.
+    </p>
+
 </section>
 
-<section>
-    <h2>Compétences</h2>
+<section id="skills">
+
+    <h2>Compétences Techniques</h2>
+
     <div class="skills">
+
         <span>AWS</span>
-        <span>Kubernetes</span>
-        <span>Docker</span>
         <span>Terraform</span>
+        <span>Docker</span>
+        <span>Kubernetes</span>
+        <span>Helm</span>
         <span>GitLab CI/CD</span>
+        <span>GitHub</span>
         <span>Linux</span>
-        <span>Splunk</span>
-        <span>Prometheus</span>
-        <span>Grafana</span>
+        <span>Windows Server</span>
+        <span>Splunk ITSI</span>
+        <span>Nagios</span>
+        <span>PRTG</span>
+        <span>CloudWatch</span>
+        <span>Cisco</span>
+        <span>VPN</span>
+        <span>DNS</span>
+        <span>DHCP</span>
+
     </div>
+
 </section>
 
-<section>
-    <h2>Projets</h2>
+<section id="experience">
+
+    <h2>Expérience Professionnelle</h2>
+
+    <div class="card">
+
+        <h3>Ingénieur NOC Senior - Banque Africaine de Développement</h3>
+
+        <p>
+            Juillet 2018 - Aujourd'hui
+        </p>
+
+        <ul>
+
+            <li>
+                Supervision des réseaux critiques DMVPN, MPLS et VSAT.
+            </li>
+
+            <li>
+                Administration des plateformes Splunk ITSI, Nagios et PRTG.
+            </li>
+
+            <li>
+                Support des applications SAP, SUMMIT et Oracle.
+            </li>
+
+            <li>
+                Diagnostic et résolution proactive des incidents majeurs.
+            </li>
+
+            <li>
+                Accompagnement technique des équipes et gestion de crise.
+            </li>
+
+            <li>
+                Mise en œuvre de processus ITIL avec ServiceNow.
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+<section id="projects">
+
+    <h2>Projets DevOps</h2>
+
     <div class="cards">
 
         <div class="card">
-            <h3>Plateforme Kubernetes</h3>
-            <p>Déploiement et supervision d'un cluster Kubernetes avec Prometheus, Grafana et Alertmanager.</p>
-        </div>
 
-        <div class="card">
             <h3>Infrastructure as Code</h3>
-            <p>Provisionnement d'environnements AWS avec Terraform et automatisation CI/CD.</p>
+
+            <p>
+                Automatisation du provisionnement AWS avec Terraform
+                et conception de modules réutilisables.
+            </p>
+
         </div>
 
         <div class="card">
-            <h3>Observabilité</h3>
-            <p>Mise en place d'une plateforme centralisée de monitoring et de logs.</p>
+
+            <h3>CI/CD GitLab</h3>
+
+            <p>
+                Mise en œuvre de pipelines GitLab CI/CD intégrant
+                tests et déploiements automatisés.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Docker & Kubernetes</h3>
+
+            <p>
+                Déploiement d'applications conteneurisées et gestion
+                des ressources Kubernetes.
+            </p>
+
         </div>
 
     </div>
+
 </section>
 
-<section id="contact">
-    <h2>Contact</h2>
-    <p>Email : votre.email@exemple.com</p>
-    <p>LinkedIn : linkedin.com/in/votreprofil</p>
-    <p>GitHub : github.com/votrecompte</p>
-</section>
+<section id="certifications">
 
-<footer>
-    © 2026 Aboulaye - Portfolio Cloud & DevOps
-</footer>
+    <h2>Certifications</h2>
 
-</body>
-</html>
+    <div class="cards">
+
+        <div class="card">
+            <h3>AWS Solutions Architect Associate</h3>
+            <p>2025</p>
+        </div>
+
+        <div class="card">
+            <h3>Terraform Associate</h3>
+      
