@@ -1,357 +1,568 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Aboulaye Sylla | Cloud & DevOps Engineer</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sylla Aboulaye — NOC Senior Engineer · Cloud &amp; DevOps</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-
-*{
-    margin:0;
-    padding:0;
+  :root{
+    --bg-deep:#0E1620;
+    --bg-panel:#16212C;
+    --bg-panel-2:#1C2A37;
+    --paper:#ECE7DA;
+    --paper-dim:#DFD9C7;
+    --ink:#10161D;
+    --text-light:#E9EEF3;
+    --text-mute:#8496A6;
+    --signal-cyan:#3FC1F0;
+    --signal-coral:#F2665B;
+    --signal-green:#49DE93;
+    --line:rgba(233,238,243,0.12);
+    --line-strong:rgba(233,238,243,0.26);
+    --radius:3px;
+    --font-display:'Space Grotesk', 'IBM Plex Sans', sans-serif;
+    --font-body:'IBM Plex Sans', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit;}
+  html{scroll-behavior:smooth; scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));}
+  body{
+    margin:0; background:var(--bg-deep); color:var(--text-light);
+    font-family:var(--font-body); font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
 
-html{
-    scroll-behavior:smooth;
-}
+  /* language toggle logic */
+  .lang-en{display:none;}
+  html[data-lang="en"] .lang-fr{display:none;}
+  html[data-lang="en"] .lang-en{display:revert;}
 
-body{
-    background:#f5f7fa;
-    color:#333;
-    line-height:1.6;
-}
+  /* ---------- NAV ---------- */
+  header.topbar{
+    position:sticky; top:0; z-index:50; top:env(safe-area-inset-top,0px);
+    background:rgba(14,22,32,0.86); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; max-width:1120px; margin:0 auto; gap:16px;
+  }
+  @media (max-width:640px){ .topbar-inner{padding:14px 20px;} }
+  .brand{
+    font-family:var(--font-display); font-weight:600; font-size:15px;
+    letter-spacing:0.02em; display:flex; align-items:center; gap:10px; white-space:nowrap;
+  }
+  .status-dot{
+    width:8px; height:8px; border-radius:50%; background:var(--signal-green); flex:none;
+    animation:pulse 2.4s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(73,222,147,0.55);}
+    70%{box-shadow:0 0 0 7px rgba(73,222,147,0);}
+    100%{box-shadow:0 0 0 0 rgba(73,222,147,0);}
+  }
+  @media (prefers-reduced-motion:reduce){ .status-dot{animation:none;} }
+  nav.mainnav{display:flex; gap:24px; align-items:center;}
+  nav.mainnav a{
+    font-size:13.5px; color:var(--text-mute); text-decoration:none;
+    font-family:var(--font-mono); transition:color .15s ease;
+  }
+  nav.mainnav a:hover, nav.mainnav a:focus-visible{color:var(--text-light);}
+  @media (max-width:820px){ nav.mainnav a{display:none;} }
 
-/* Navigation */
+  .lang-switch{
+    font-family:var(--font-mono); font-size:12.5px; background:transparent;
+    border:1px solid var(--line-strong); border-radius:100px; padding:6px 12px;
+    color:var(--text-mute); cursor:pointer; display:flex; gap:6px; align-items:center;
+    flex:none;
+  }
+  .lang-switch:hover{border-color:var(--signal-cyan);}
+  .lang-switch .ls-sep{color:var(--text-mute); opacity:.5;}
+  .ls-fr, .ls-en{transition:color .15s ease;}
+  html[data-lang="fr"] .ls-fr{color:var(--text-light); font-weight:600;}
+  html[data-lang="en"] .ls-en{color:var(--text-light); font-weight:600;}
 
-nav{
-    background:#0f172a;
-    padding:15px;
-    position:sticky;
-    top:0;
-    z-index:100;
-    text-align:center;
-}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--signal-cyan); outline-offset:3px;}
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin:0 15px;
-    font-weight:600;
-}
+  /* ---------- HERO ---------- */
+  section.hero{padding:88px 0 72px; border-bottom:1px solid var(--line);}
+  @media (max-width:640px){ section.hero{padding:52px 0 44px;} }
+  .hero-grid{display:grid; grid-template-columns:1.5fr 1fr; gap:48px; align-items:start;}
+  @media (max-width:880px){ .hero-grid{grid-template-columns:1fr; gap:36px;} }
 
-nav a:hover{
-    color:#60a5fa;
-}
+  .eyebrow-row{
+    display:flex; align-items:center; gap:10px; margin-bottom:22px; flex-wrap:wrap;
+    font-family:var(--font-mono); font-size:12.5px; color:var(--signal-coral);
+  }
+  .eyebrow-row .sep{color:var(--text-mute);}
 
-/* Hero */
+  h1.name{
+    font-family:var(--font-display); font-weight:700; font-size:clamp(2.3rem, 5.4vw, 3.5rem);
+    line-height:1.04; margin:0 0 14px; letter-spacing:-0.01em; color:var(--text-light);
+  }
+  p.role{
+    font-family:var(--font-display); font-weight:500; font-size:1.18rem;
+    color:var(--signal-cyan); margin:0 0 24px;
+  }
+  p.pitch{max-width:56ch; color:var(--text-mute); font-size:1.02rem; margin:0 0 30px;}
+  .hero-links{display:flex; flex-wrap:wrap; gap:12px;}
+  .pill{
+    display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line-strong);
+    border-radius:100px; padding:9px 16px; font-size:13.5px; text-decoration:none;
+    color:var(--text-light); font-family:var(--font-mono);
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .pill:hover{border-color:var(--signal-cyan); background:rgba(63,193,240,0.08);}
+  .pill.filled{background:var(--signal-cyan); color:#08222E; border-color:var(--signal-cyan); font-weight:600;}
+  .pill.filled:hover{background:#67D3F5;}
 
-header{
-    background:linear-gradient(135deg,#0f172a,#1e3a8a);
-    color:white;
-    text-align:center;
-    padding:100px 20px;
-}
+  .hero-side{display:flex; flex-direction:column; gap:20px;}
 
-header h1{
-    font-size:3rem;
-    margin-bottom:10px;
-}
+  /* photo panel */
+  .photo-panel{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px;
+  }
+  .photo-frame{position:relative; border-radius:2px; overflow:hidden; background:var(--bg-panel-2);}
+  .photo-frame img{
+    width:100%; aspect-ratio:4/5; object-fit:cover; object-position:center top;
+    filter:grayscale(12%) contrast(1.04);
+    display:block;
+  }
+  .corner{position:absolute; width:16px; height:16px; border-color:var(--signal-cyan); z-index:2;}
+  .corner.tl{top:8px; left:8px; border-top:2px solid var(--signal-cyan); border-left:2px solid var(--signal-cyan);}
+  .corner.tr{top:8px; right:8px; border-top:2px solid var(--signal-cyan); border-right:2px solid var(--signal-cyan);}
+  .corner.bl{bottom:8px; left:8px; border-bottom:2px solid var(--signal-cyan); border-left:2px solid var(--signal-cyan);}
+  .corner.br{bottom:8px; right:8px; border-bottom:2px solid var(--signal-cyan); border-right:2px solid var(--signal-cyan);}
+  .photo-tag{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--font-mono); font-size:10.5px; color:var(--text-mute);
+    letter-spacing:0.03em; padding:10px 2px 0;
+  }
+  .photo-tag .live{display:flex; align-items:center; gap:6px; color:var(--signal-green);}
+  .photo-tag .live-dot{width:5px; height:5px; border-radius:50%; background:var(--signal-green);}
 
-header h2{
-    color:#93c5fd;
-    margin-bottom:15px;
-}
+  /* hero metric panel */
+  .metric-panel{background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:26px 24px;}
+  .metric-panel .metric-label{
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.04em; color:var(--text-mute); margin-bottom:6px;
+  }
+  .metric-big{
+    font-family:var(--font-mono); font-weight:500; font-size:clamp(2.4rem,6.6vw,3.1rem);
+    color:var(--signal-green); line-height:1; margin:2px 0 6px;
+  }
+  .metric-sub{font-size:13.5px; color:var(--text-mute); margin-bottom:20px;}
+  .metric-divider{height:1px; background:var(--line); margin:18px 0;}
+  .metric-facts{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .metric-fact .num{font-family:var(--font-mono); font-size:1.4rem; color:var(--text-light);}
+  .metric-fact .lbl{font-size:11.5px; color:var(--text-mute); margin-top:2px;}
 
-header p{
-    max-width:700px;
-    margin:auto;
-    margin-bottom:30px;
-}
+  /* ---------- SECTION HEADINGS ---------- */
+  .section-head{display:flex; align-items:baseline; gap:16px; margin-bottom:34px; padding-top:64px;}
+  @media (max-width:640px){ .section-head{padding-top:48px; margin-bottom:26px;} }
+  .section-head .idx{font-family:var(--font-mono); color:var(--text-mute); font-size:13px;}
+  .section-head h2{font-family:var(--font-display); font-weight:600; font-size:1.7rem; margin:0; color:var(--text-light);}
+  section{scroll-margin-top:80px;}
 
-.hero-buttons{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:15px;
-}
+  /* ---------- PROFIL ---------- */
+  .profile-box{
+    display:grid; grid-template-columns:1fr 1fr; gap:48px; padding-bottom:70px; border-bottom:1px solid var(--line);
+  }
+  @media (max-width:880px){ .profile-box{grid-template-columns:1fr; gap:24px;} }
+  .profile-box p{color:var(--text-mute); font-size:1.02rem; max-width:58ch;}
+  .profile-box p strong{color:var(--text-light); font-weight:500;}
+  .lang-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  .lang-list li{display:flex; justify-content:space-between; border-bottom:1px solid var(--line); padding-bottom:12px; font-size:14.5px;}
+  .lang-list span.tag{color:var(--text-mute); font-family:var(--font-mono); font-size:12.5px;}
+  .qualities-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
+  .quality-chip{
+    font-family:var(--font-mono); font-size:12.5px; color:var(--signal-coral);
+    border:1px solid rgba(242,102,91,0.4); padding:6px 12px; border-radius:100px;
+  }
 
-.btn{
-    display:inline-block;
-    padding:12px 24px;
-    border-radius:8px;
-    text-decoration:none;
-    color:white;
-    background:#2563eb;
-    font-weight:bold;
-}
+  /* ---------- SYSTEM STATUS BOARD (competences) ---------- */
+  .board{padding-bottom:70px; border-bottom:1px solid var(--line);}
+  .board-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line);}
+  @media (max-width:880px){ .board-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:600px){ .board-grid{grid-template-columns:1fr;} }
+  .board-cell{background:var(--bg-panel); padding:26px 24px;}
+  .board-cell .cell-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
+  .board-cell h3{font-family:var(--font-display); font-size:1.02rem; font-weight:600; margin:0; color:var(--text-light);}
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--signal-green); flex:none;}
+  .board-cell ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px;}
+  .board-cell li{font-size:13.5px; color:var(--text-mute); padding-left:14px; position:relative;}
+  .board-cell li::before{content:"·"; position:absolute; left:0; color:var(--signal-cyan); font-weight:700;}
 
-.btn:hover{
-    background:#1d4ed8;
-}
+  /* ---------- PROJETS ---------- */
+  .projects{padding-bottom:70px; border-bottom:1px solid var(--line);}
+  .proj-row{display:grid; grid-template-columns:200px 1fr; gap:32px; padding:26px 0; border-top:1px solid var(--line);}
+  .proj-row:last-child{border-bottom:1px solid var(--line);}
+  @media (max-width:700px){ .proj-row{grid-template-columns:1fr; gap:10px;} }
+  .proj-row .proj-tag{font-family:var(--font-mono); font-size:12.5px; color:var(--signal-coral); align-self:start; padding-top:2px;}
+  .proj-row h3{font-family:var(--font-display); font-size:1.15rem; font-weight:600; margin:0 0 10px; color:var(--text-light);}
+  .proj-row ul{margin:0; padding-left:18px; color:var(--text-mute); font-size:14px;}
+  .proj-row li{margin-bottom:5px;}
 
-.btn-secondary{
-    background:#475569;
-}
+  /* ---------- EXPERIENCE — log ---------- */
+  .exp{padding-bottom:70px; border-bottom:1px solid var(--line);}
+  .log{border-left:2px solid var(--line-strong); padding-left:28px; position:relative;}
+  .log-entry{position:relative; padding-bottom:6px;}
+  .log-entry::before{
+    content:""; position:absolute; left:-33.5px; top:6px; width:9px; height:9px; border-radius:50%;
+    background:var(--bg-deep); border:2px solid var(--signal-cyan);
+  }
+  .log-time{font-family:var(--font-mono); font-size:12.5px; color:var(--text-mute); margin-bottom:6px;}
+  .log-entry h3{font-family:var(--font-display); font-size:1.25rem; font-weight:600; margin:0 0 4px; color:var(--text-light);}
+  .log-entry .org{color:var(--signal-cyan); font-size:14px; margin-bottom:18px;}
+  .exp-cols{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  @media (max-width:760px){ .exp-cols{grid-template-columns:1fr;} }
+  .exp-cols h4{font-family:var(--font-mono); font-size:12px; letter-spacing:0.02em; color:var(--text-mute); margin:0 0 10px;}
+  .exp-cols ul{margin:0; padding-left:18px; color:var(--text-mute); font-size:14px;}
+  .exp-cols li{margin-bottom:8px;}
+  .impact-num{color:var(--signal-green); font-family:var(--font-mono);}
 
-/* Sections */
+  /* ---------- CERTIFICATIONS ---------- */
+  .certs{padding-bottom:70px; border-bottom:1px solid var(--line);}
+  .cert-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  @media (max-width:880px){ .cert-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:480px){ .cert-grid{grid-template-columns:1fr;} }
+  .cert-card{border:1px solid var(--line); border-radius:var(--radius); padding:20px 18px; background:var(--bg-panel);}
+  .cert-card .yr{font-family:var(--font-mono); color:var(--signal-coral); font-size:12px; margin-bottom:10px;}
+  .cert-card .cname{font-size:14.5px; color:var(--text-light); line-height:1.4;}
 
-section{
-    max-width:1100px;
-    margin:auto;
-    padding:60px 20px;
-}
+  /* ---------- FORMATION ---------- */
+  .edu{padding-bottom:70px; border-bottom:1px solid var(--line);}
+  .edu-row{display:flex; justify-content:space-between; gap:20px; padding:18px 0; border-top:1px solid var(--line); flex-wrap:wrap;}
+  .edu-row:last-child{border-bottom:1px solid var(--line);}
+  .edu-row .deg{color:var(--text-light); font-size:15px;}
+  .edu-row .sch{color:var(--text-mute); font-size:13.5px; margin-top:3px;}
+  .edu-row .yrs{font-family:var(--font-mono); color:var(--text-mute); font-size:13px; white-space:nowrap;}
 
-h2{
-    color:#0f172a;
-    margin-bottom:25px;
-    text-align:center;
-}
-
-/* Cards */
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:20px;
-}
-
-.card{
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.08);
-}
-
-.card h3{
-    margin-bottom:10px;
-    color:#1e3a8a;
-}
-
-/* Skills */
-
-.skills{
-    text-align:center;
-}
-
-.skills span{
-    display:inline-block;
-    margin:6px;
-    padding:10px 15px;
-    background:#2563eb;
-    color:white;
-    border-radius:20px;
-}
-
-/* Contact */
-
-.contact-card{
-    background:white;
-    border-radius:12px;
-    padding:30px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.08);
-}
-
-.contact-card p{
-    margin:12px 0;
-}
-
-.contact-card a{
-    color:#2563eb;
-    text-decoration:none;
-}
-
-.contact-card a:hover{
-    text-decoration:underline;
-}
-
-ul{
-    padding-left:20px;
-}
-
-/* Footer */
-
-footer{
-    background:#0f172a;
-    color:white;
-    text-align:center;
-    padding:20px;
-    margin-top:40px;
-}
-
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{padding:70px 0 50px;}
+  .contact-panel{
+    background:var(--paper); color:var(--ink); border-radius:var(--radius);
+    padding:48px 40px; display:grid; grid-template-columns:1.3fr 1fr; gap:32px;
+  }
+  @media (max-width:760px){ .contact-panel{grid-template-columns:1fr; padding:34px 24px;} }
+  .contact-panel h2{font-family:var(--font-display); font-size:1.9rem; margin:0 0 14px; font-weight:700;}
+  .contact-panel p{color:#40495499; max-width:44ch; margin:0 0 20px; font-size:15px;}
+  .contact-panel .pill{border-color:rgba(16,22,29,0.25); color:var(--ink);}
+  .contact-panel .pill:hover{border-color:var(--ink); background:rgba(16,22,29,0.06);}
+  .contact-panel .pill.filled{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .contact-panel .pill.filled:hover{background:#2a3644;}
+  .contact-meta{display:flex; flex-direction:column; gap:14px; justify-content:center; border-left:1px solid rgba(16,22,29,0.18); padding-left:32px;}
+  @media (max-width:760px){ .contact-meta{border-left:none; padding-left:0; border-top:1px solid rgba(16,22,29,0.18); padding-top:20px;} }
+  .contact-meta .cm-label{font-family:var(--font-mono); font-size:11.5px; color:#40495488;}
+  .contact-meta .cm-val{font-size:14.5px;}
+  .foot-note{text-align:center; color:var(--text-mute); font-family:var(--font-mono); font-size:12px; margin-top:36px;}
 </style>
 </head>
-
 <body>
 
-<nav>
-    #aboutÀ propos</a>
-    #skillsCompétences</a>
-    #experienceExpérience</a>
-    #projectsProjets</a>
-    #certificationsCertifications</a>
-    #contactContact</a>
-</nav>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="status-dot" aria-hidden="true"></span> SYLLA ABOULAYE</div>
+    <nav class="mainnav">
+      <a href="#profil"><span class="lang-fr">Profil</span><span class="lang-en">Profile</span></a>
+      <a href="#competences"><span class="lang-fr">Compétences</span><span class="lang-en">Skills</span></a>
+      <a href="#projets"><span class="lang-fr">Projets</span><span class="lang-en">Projects</span></a>
+      <a href="#experience"><span class="lang-fr">Expérience</span><span class="lang-en">Experience</span></a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="lang-switch" id="langToggle" aria-label="Changer de langue / Switch language">
+      <span class="ls-fr">FR</span><span class="ls-sep">/</span><span class="ls-en">EN</span>
+    </button>
+  </div>
+</header>
 
-<header>
+<div class="wrap">
 
-    <h1>Aboulaye Sylla</h1>
-
-    <h2>Senior NOC Engineer | Cloud & DevOps Engineer</h2>
-
-    <p>
-        Plus de 8 ans d'expérience dans la supervision d'infrastructures
-        critiques, l'automatisation, le Cloud AWS et les pratiques DevOps.
-    </p>
-
-    <div class="hero-buttons">
-        #contactMe contacter</a>
-        <a class="btn btn-secondary"
-           href="CV_Aboulaye_Sylla.pdf"
-           target="_blankon id="about">
-
-    <h2>À propos</h2>
-
-    <p>
-        Ingénieur NOC Senior à la Banque Africaine de Développement,
-        spécialisé dans la supervision d'infrastructures critiques,
-        l'observabilité, l'automatisation et les technologies Cloud.
-        Passionné par Kubernetes, Terraform et les pratiques DevOps,
-        j'accompagne les organisations vers des infrastructures fiables,
-        évolutives et automatisées.
-    </p>
-
-</section>
-
-<section id="skills">
-
-    <h2>Compétences Techniques</h2>
-
-    <div class="skills">
-
-        <span>AWS</span>
-        <span>Terraform</span>
-        <span>Docker</span>
-        <span>Kubernetes</span>
-        <span>Helm</span>
-        <span>GitLab CI/CD</span>
-        <span>GitHub</span>
-        <span>Linux</span>
-        <span>Windows Server</span>
-        <span>Splunk ITSI</span>
-        <span>Nagios</span>
-        <span>PRTG</span>
-        <span>CloudWatch</span>
-        <span>Cisco</span>
-        <span>VPN</span>
-        <span>DNS</span>
-        <span>DHCP</span>
-
-    </div>
-
-</section>
-
-<section id="experience">
-
-    <h2>Expérience Professionnelle</h2>
-
-    <div class="card">
-
-        <h3>Ingénieur NOC Senior - Banque Africaine de Développement</h3>
-
-        <p>
-            Juillet 2018 - Aujourd'hui
+  <section class="hero" id="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow-row">
+          <span>Abidjan, Côte d'Ivoire</span><span class="sep">/</span>
+          <span class="lang-fr">Disponible pour missions Cloud &amp; DevOps</span>
+          <span class="lang-en">Available for Cloud &amp; DevOps engagements</span>
+        </div>
+        <h1 class="name">Sylla Aboulaye</h1>
+        <p class="role">
+          <span class="lang-fr">Ingénieur NOC Senior — Cloud &amp; DevOps Engineer</span>
+          <span class="lang-en">Senior NOC Engineer — Cloud &amp; DevOps Engineer</span>
         </p>
+        <p class="pitch">
+          <span class="lang-fr">Plus de 8 ans à garder des infrastructures critiques en ligne à la Banque Africaine de Développement. Aujourd'hui, je mets cette rigueur de supervision au service du Cloud&nbsp;: je conçois des infrastructures AWS avec Terraform et je déploie des applications conteneurisées avec Docker et Kubernetes.</span>
+          <span class="lang-en">Over 8 years keeping critical infrastructure online at the African Development Bank. Today I bring that same monitoring discipline to the Cloud: designing AWS infrastructure with Terraform and shipping containerized applications with Docker and Kubernetes.</span>
+        </p>
+        <div class="hero-links">
+          <a class="pill filled" href="mailto:aboulayesylla66@gmail.com">
+            <span class="lang-fr">Écrire un email</span><span class="lang-en">Send an email</span>
+          </a>
+          <a class="pill" href="https://www.linkedin.com/in/aboulaye-sylla-23bb1816a" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="pill" href="https://github.com/sylla-cloud" target="_blank" rel="noopener">GitHub</a>
+          <a class="pill" href="https://gitlab.com/sylla-cloud" target="_blank" rel="noopener">GitLab</a>
+        </div>
+      </div>
 
-        <ul>
+      <div class="hero-side">
+        <div class="photo-panel">
+          <div class="photo-frame">
+            <img src="data:image/jpeg;base64,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" alt="Sylla Aboulaye">
+            <span class="corner tl"></span><span class="corner tr"></span>
+            <span class="corner bl"></span><span class="corner br"></span>
+          </div>
+          <div class="photo-tag">
+            <span><span class="lang-fr">OPÉRATEUR PRINCIPAL</span><span class="lang-en">LEAD ENGINEER</span></span>
+            <span class="live"><span class="live-dot"></span>ABJ</span>
+          </div>
+        </div>
 
-            <li>
-                Supervision des réseaux critiques DMVPN, MPLS et VSAT.
-            </li>
+        <div class="metric-panel">
+          <div class="metric-label">
+            <span class="lang-fr">indisponibilité réduite</span><span class="lang-en">downtime reduced</span>
+          </div>
+          <div class="metric-big">−35%</div>
+          <div class="metric-sub">
+            <span class="lang-fr">sur les services critiques, grâce à une surveillance proactive (Splunk ITSI, Nagios, PRTG).</span>
+            <span class="lang-en">on critical services, through proactive monitoring (Splunk ITSI, Nagios, PRTG).</span>
+          </div>
+          <div class="metric-divider"></div>
+          <div class="metric-facts">
+            <div class="metric-fact"><div class="num">8+</div><div class="lbl"><span class="lang-fr">ans en NOC / infra critique</span><span class="lang-en">years in NOC / critical infra</span></div></div>
+            <div class="metric-fact"><div class="num">24/7</div><div class="lbl"><span class="lang-fr">rotation supervision</span><span class="lang-en">on-call rotation</span></div></div>
+            <div class="metric-fact"><div class="num">4</div><div class="lbl"><span class="lang-fr">certifications actives</span><span class="lang-en">active certifications</span></div></div>
+            <div class="metric-fact"><div class="num">2025</div><div class="lbl"><span class="lang-fr">promu ingénieur senior</span><span class="lang-en">promoted to senior</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <li>
-                Administration des plateformes Splunk ITSI, Nagios et PRTG.
-            </li>
-
-            <li>
-                Support des applications SAP, SUMMIT et Oracle.
-            </li>
-
-            <li>
-                Diagnostic et résolution proactive des incidents majeurs.
-            </li>
-
-            <li>
-                Accompagnement technique des équipes et gestion de crise.
-            </li>
-
-            <li>
-                Mise en œuvre de processus ITIL avec ServiceNow.
-            </li>
-
+  <section id="profil">
+    <div class="section-head"><span class="idx">01</span><h2><span class="lang-fr">Profil</span><span class="lang-en">Profile</span></h2></div>
+    <div class="profile-box">
+      <p>
+        <span class="lang-fr">Ingénieur NOC Senior avec plus de <strong>8 ans d'expérience</strong> dans la supervision d'infrastructures critiques à la Banque Africaine de Développement. Passionné par le Cloud et les pratiques DevOps, je conçois et automatise des infrastructures AWS à l'aide de <strong>Terraform</strong> et déploie des applications conteneurisées avec <strong>Docker</strong> et <strong>Kubernetes</strong>.</span>
+        <span class="lang-en">Senior NOC Engineer with <strong>8+ years of experience</strong> supervising critical infrastructure at the African Development Bank. Passionate about Cloud and DevOps practices, I design and automate AWS infrastructure using <strong>Terraform</strong> and deploy containerized applications with <strong>Docker</strong> and <strong>Kubernetes</strong>.</span>
+      </p>
+      <p>
+        <span class="lang-fr">Fort d'une solide expérience en monitoring, automatisation, CI/CD et Infrastructure as Code, je contribue à la fiabilité, à la disponibilité et à l'optimisation des services IT — avec la même exigence qui a fait mes preuves en salle de supervision.</span>
+        <span class="lang-en">Backed by solid experience in monitoring, automation, CI/CD and Infrastructure as Code, I contribute to the reliability, availability and optimization of IT services — with the same rigor that proved itself in the operations room.</span>
+      </p>
+      <div>
+        <ul class="lang-list">
+          <li><span><span class="lang-fr">Français</span><span class="lang-en">French</span></span><span class="tag"><span class="lang-fr">maternel</span><span class="lang-en">native</span></span></li>
+          <li><span><span class="lang-fr">Anglais</span><span class="lang-en">English</span></span><span class="tag"><span class="lang-fr">intermédiaire / technique</span><span class="lang-en">intermediate / technical</span></span></li>
         </ul>
-
+        <div class="qualities-row">
+          <span class="quality-chip"><span class="lang-fr">Résilience</span><span class="lang-en">Resilience</span></span>
+          <span class="quality-chip"><span class="lang-fr">Travail sous pression</span><span class="lang-en">Works well under pressure</span></span>
+          <span class="quality-chip"><span class="lang-fr">Autonomie</span><span class="lang-en">Autonomy</span></span>
+        </div>
+      </div>
     </div>
+  </section>
 
-</section>
-
-<section id="projects">
-
-    <h2>Projets DevOps</h2>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <h3>Infrastructure as Code</h3>
-
-            <p>
-                Automatisation du provisionnement AWS avec Terraform
-                et conception de modules réutilisables.
-            </p>
-
+  <section id="competences">
+    <div class="section-head"><span class="idx">02</span><h2><span class="lang-fr">Compétences clés</span><span class="lang-en">Key skills</span></h2></div>
+    <div class="board">
+      <div class="board-grid">
+        <div class="board-cell">
+          <div class="cell-top"><h3><span class="lang-fr">Cloud &amp; infrastructure</span><span class="lang-en">Cloud &amp; Infrastructure</span></h3><span class="dot"></span></div>
+          <ul><li>AWS — EC2, S3, VPC, IAM</li><li>Terraform (<span class="lang-fr">Infrastructure as Code</span><span class="lang-en">Infrastructure as Code</span>)</li><li>CloudFormation</li></ul>
         </div>
-
-        <div class="card">
-
-            <h3>CI/CD GitLab</h3>
-
-            <p>
-                Mise en œuvre de pipelines GitLab CI/CD intégrant
-                tests et déploiements automatisés.
-            </p>
-
+        <div class="board-cell">
+          <div class="cell-top"><h3><span class="lang-fr">Containers &amp; orchestration</span><span class="lang-en">Containers &amp; Orchestration</span></h3><span class="dot"></span></div>
+          <ul><li>Docker</li><li>Kubernetes (K8s)</li><li>Helm</li></ul>
         </div>
-
-        <div class="card">
-
-            <h3>Docker & Kubernetes</h3>
-
-            <p>
-                Déploiement d'applications conteneurisées et gestion
-                des ressources Kubernetes.
-            </p>
-
+        <div class="board-cell">
+          <div class="cell-top"><h3>CI/CD &amp; DevOps</h3><span class="dot"></span></div>
+          <ul><li>GitLab CI/CD</li><li>GitHub</li><li>Git</li></ul>
         </div>
-
+        <div class="board-cell">
+          <div class="cell-top"><h3><span class="lang-fr">Supervision &amp; observabilité</span><span class="lang-en">Monitoring &amp; Observability</span></h3><span class="dot"></span></div>
+          <ul><li>Splunk ITSI</li><li>Nagios</li><li>PRTG</li><li>CloudWatch</li></ul>
+        </div>
+        <div class="board-cell">
+          <div class="cell-top"><h3><span class="lang-fr">Systèmes &amp; réseaux</span><span class="lang-en">Systems &amp; Networking</span></h3><span class="dot"></span></div>
+          <ul><li>Linux — Ubuntu / Debian</li><li>Windows Server — AD, GPO, DNS, DHCP</li><li>Cisco, VPN, Firewalling</li></ul>
+        </div>
+        <div class="board-cell">
+          <div class="cell-top"><h3><span class="lang-fr">Méthode &amp; gestion</span><span class="lang-en">Methodology &amp; Management</span></h3><span class="dot"></span></div>
+          <ul><li>ITIL / ServiceNow</li><li>Scrum</li><li><span class="lang-fr">Gestion de crise, mentorat junior</span><span class="lang-en">Crisis management, mentoring junior engineers</span></li></ul>
+        </div>
+      </div>
     </div>
+  </section>
 
-</section>
-
-<section id="certifications">
-
-    <h2>Certifications</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>AWS Solutions Architect Associate</h3>
-            <p>2025</p>
+  <section id="projets">
+    <div class="section-head"><span class="idx">03</span><h2><span class="lang-fr">Projets DevOps</span><span class="lang-en">DevOps projects</span></h2></div>
+    <div class="projects">
+      <div class="proj-list">
+        <div class="proj-row">
+          <div class="proj-tag">Terraform · AWS</div>
+          <div>
+            <h3><span class="lang-fr">Infrastructure as Code</span><span class="lang-en">Infrastructure as Code</span></h3>
+            <ul>
+              <li><span class="lang-fr">Automatisation du provisionnement d'infrastructures AWS avec Terraform.</span><span class="lang-en">Automated AWS infrastructure provisioning with Terraform.</span></li>
+              <li><span class="lang-fr">Standardisation des déploiements grâce à des modules réutilisables.</span><span class="lang-en">Standardized deployments through reusable modules.</span></li>
+            </ul>
+          </div>
         </div>
+        <div class="proj-row">
+          <div class="proj-tag">GitLab CI/CD</div>
+          <div>
+            <h3><span class="lang-fr">CI/CD &amp; automatisation</span><span class="lang-en">CI/CD &amp; Automation</span></h3>
+            <ul>
+              <li><span class="lang-fr">Conception et mise en œuvre de pipelines GitLab CI/CD.</span><span class="lang-en">Designed and implemented GitLab CI/CD pipelines.</span></li>
+              <li><span class="lang-fr">Intégration de tests automatisés et déploiement continu des applications.</span><span class="lang-en">Integrated automated testing and continuous deployment.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="proj-row">
+          <div class="proj-tag">Docker · Kubernetes</div>
+          <div>
+            <h3><span class="lang-fr">Conteneurisation &amp; orchestration</span><span class="lang-en">Containerization &amp; Orchestration</span></h3>
+            <ul>
+              <li><span class="lang-fr">Création et gestion d'images Docker.</span><span class="lang-en">Built and managed Docker images.</span></li>
+              <li><span class="lang-fr">Déploiement d'applications conteneurisées sur Kubernetes.</span><span class="lang-en">Deployed containerized applications on Kubernetes.</span></li>
+              <li><span class="lang-fr">Gestion des objets K8s — Deployments, Services, ConfigMaps, Secrets.</span><span class="lang-en">Managed K8s objects — Deployments, Services, ConfigMaps, Secrets.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="card">
-            <h3>Terraform Associate</h3>
-      
+  <section id="experience">
+    <div class="section-head"><span class="idx">04</span><h2><span class="lang-fr">Expérience professionnelle</span><span class="lang-en">Professional experience</span></h2></div>
+    <div class="exp">
+      <div class="log">
+        <div class="log-entry">
+          <div class="log-time">
+            <span class="lang-fr">Juillet 2018 → présent · promu ingénieur senior en mars 2025</span>
+            <span class="lang-en">July 2018 → present · promoted to senior engineer in March 2025</span>
+          </div>
+          <h3><span class="lang-fr">Ingénieur NOC Senior (Network Operations Center) — Front Office</span><span class="lang-en">Senior NOC Engineer (Network Operations Center) — Front Office</span></h3>
+          <div class="org">
+            <span class="lang-fr">Banque Africaine de Développement (BAD) — via CFAO Technologies, Abidjan</span>
+            <span class="lang-en">African Development Bank (AfDB) — via CFAO Technologies, Abidjan</span>
+          </div>
+          <div class="exp-cols">
+            <div>
+              <h4><span class="lang-fr">responsabilités</span><span class="lang-en">responsibilities</span></h4>
+              <ul>
+                <li><span class="lang-fr">Supervision des réseaux critiques (DMVPN, MPLS, VSAT) et des applications stratégiques (SAP, SUMMIT, Oracle).</span><span class="lang-en">Monitored critical networks (DMVPN, MPLS, VSAT) and strategic applications (SAP, SUMMIT, Oracle).</span></li>
+                <li><span class="lang-fr">Administration des outils de monitoring avancés (Splunk ITSI, Nagios, PRTG).</span><span class="lang-en">Administered advanced monitoring tools (Splunk ITSI, Nagios, PRTG).</span></li>
+                <li><span class="lang-fr">Diagnostic et résolution proactive d'incidents majeurs, en coordination avec les équipes IT.</span><span class="lang-en">Diagnosed and proactively resolved major incidents, coordinating with IT teams.</span></li>
+                <li><span class="lang-fr">Rotation de travail 24h/24 et 7j/7.</span><span class="lang-en">24/7 on-call shift rotation.</span></li>
+                <li><span class="lang-fr">Leadership technique : gestion de crise, accompagnement de profils juniors, optimisation ITIL avec ServiceNow.</span><span class="lang-en">Technical leadership: crisis management, mentoring junior engineers, ITIL optimization with ServiceNow.</span></li>
+              </ul>
+            </div>
+            <div>
+              <h4><span class="lang-fr">impact</span><span class="lang-en">impact</span></h4>
+              <ul>
+                <li><span class="lang-fr">Réduction de <span class="impact-num">35%</span> des temps d'indisponibilité des services critiques grâce à des mesures proactives de surveillance.</span><span class="lang-en">Cut downtime on critical services by <span class="impact-num">35%</span> through proactive monitoring measures.</span></li>
+                <li><span class="lang-fr">Mise en place de procédures ITIL améliorées pour une gestion efficace des tickets avec ServiceNow.</span><span class="lang-en">Rolled out improved ITIL procedures for efficient ticket management with ServiceNow.</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="section-head"><span class="idx">05</span><h2>Certifications</h2></div>
+    <div class="certs">
+      <div class="cert-grid">
+        <div class="cert-card"><div class="yr">2025</div><div class="cname">AWS Certified Solutions Architect — Associate</div></div>
+        <div class="cert-card"><div class="yr">2025</div><div class="cname">HashiCorp Certified: Terraform Associate</div></div>
+        <div class="cert-card"><div class="yr">2024</div><div class="cname">AWS Certified Cloud Practitioner</div></div>
+        <div class="cert-card"><div class="yr">2020</div><div class="cname">Scrum Fundamentals Certified</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formation">
+    <div class="section-head"><span class="idx">06</span><h2><span class="lang-fr">Formation académique</span><span class="lang-en">Education</span></h2></div>
+    <div class="edu">
+      <div class="edu-row">
+        <div>
+          <div class="deg"><span class="lang-fr">Ingénieur en Réseau et Télécommunication</span><span class="lang-en">Engineering Degree, Networks &amp; Telecommunications</span></div>
+          <div class="sch">ESAM, Abidjan</div>
+        </div>
+        <div class="yrs">2014 — 2017</div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="deg"><span class="lang-fr">BTS, option Systèmes Électroniques et Informatiques (SEI)</span><span class="lang-en">BTS (Higher Technician Diploma), Electronic &amp; Computer Systems</span></div>
+          <div class="sch">ESAM, Abidjan</div>
+        </div>
+        <div class="yrs">2011 — 2013</div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="deg"><span class="lang-fr">Baccalauréat, série D</span><span class="lang-en">Baccalauréat, Series D (Sciences)</span></div>
+          <div class="sch">Lycée Moderne de Grand-Bassam</div>
+        </div>
+        <div class="yrs">2010 — 2011</div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="contact-panel">
+      <div>
+        <h2><span class="lang-fr">Parlons de votre infrastructure.</span><span class="lang-en">Let's talk about your infrastructure.</span></h2>
+        <p>
+          <span class="lang-fr">Disponible pour des missions Cloud, DevOps et supervision d'infrastructures critiques.</span>
+          <span class="lang-en">Available for Cloud, DevOps and critical infrastructure monitoring engagements.</span>
+        </p>
+        <div class="hero-links">
+          <a class="pill filled" href="mailto:aboulayesylla66@gmail.com">aboulayesylla66@gmail.com</a>
+          <a class="pill" href="https://www.linkedin.com/in/aboulaye-sylla-23bb1816a" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="contact-meta">
+        <div><div class="cm-label"><span class="lang-fr">téléphone</span><span class="lang-en">phone</span></div><div class="cm-val">(225) 0777311932 / (225) 0576211193</div></div>
+        <div><div class="cm-label"><span class="lang-fr">localisation</span><span class="lang-en">location</span></div><div class="cm-val">Abidjan, Côte d'Ivoire</div></div>
+        <div><div class="cm-label">github</div><div class="cm-val">github.com/sylla-cloud</div></div>
+        <div><div class="cm-label">gitlab</div><div class="cm-val">gitlab.com/sylla-cloud</div></div>
+      </div>
+    </div>
+    <div class="foot-note">
+      <span class="lang-fr">© 2026 Sylla Aboulaye — dernière mise à jour du système : septembre 2026</span>
+      <span class="lang-en">© 2026 Sylla Aboulaye — system last updated: September 2026</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var html = document.documentElement;
+    var btn = document.getElementById('langToggle');
+    btn.addEventListener('click', function(){
+      var next = html.getAttribute('data-lang') === 'fr' ? 'en' : 'fr';
+      html.setAttribute('data-lang', next);
+      html.setAttribute('lang', next);
+    });
+  })();
+</script>
+
+</body>
+</html>
+
